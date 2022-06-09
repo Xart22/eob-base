@@ -75,18 +75,11 @@ class MusicControllers extends Controller
 
 
             Storage::putFileAs($this->PATH_FILE_DB_MUSIC, $file_music, $name_file_music);
-            return response()->json([
-                'code' => 200,
-                'status' => 'success',
-                'message' => 'Successfully uploaded.',
-                'url' => route('flashMsg', 'music-success')
-            ]);
+            return redirect()->route('music.index')->with('success', 'Successfully created');
+            
         } catch (\Throwable $err) {
-            return response()->json([
-                'code' => 400,
-                'status' => 'failed',
-                'message' => $err->getMessage(),
-            ], 400);
+            return view('admin.music.index', ['data' => Music::all()])->with('error', $err->getMessage());
+           
         }
     }
 

@@ -112,6 +112,9 @@ body {
     transform: translateY(0%);
     transition: transform 0.3s ease-in, opacity 0.3s ease-in;
     z-index: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .music-container.play .music-info {
@@ -138,4 +141,16 @@ body {
     height: 100%;
     width: 0%;
     transition: width 0.1s linear;
+}
+
+h5 {
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    padding: 20px;
+    font-size: 1.3rem;
+    background: white;
+    resize: horizontal;
 }

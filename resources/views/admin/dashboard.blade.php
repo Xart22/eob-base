@@ -135,7 +135,7 @@
                 </div>
             </div>
         </div>
-
+        @if($data != null)
         <div class="row">
             <div class="border p-3 w-100">
                 <h4>CCTV</h4>
@@ -147,7 +147,7 @@
                 ></iframe>
             </div>
         </div>
-        @if(!empty($route_name))
+        @endif @if(!empty($route_name))
         <div class="row mt-3">
             <div class="w-100 p-3 border">
                 Destination : {{ $route_name }}

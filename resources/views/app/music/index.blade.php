@@ -9,6 +9,12 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"
         />
         <link rel="stylesheet" href="{{ asset('assets/app/css/music.css') }}" />
+        <link
+            rel="stylesheet"
+            href="{{
+                asset('assets/bootstrap-5.1.3-dist/css/bootstrap.min.css')
+            }}"
+        />
         <title>Music Player</title>
     </head>
     <body>
@@ -39,9 +45,32 @@
                 </button>
             </div>
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="overflow: scroll; height: 400px">
+                        <div class="list-group" id="list-group">
+                            @foreach ($data as $song)
+                            <a
+                                href="#"
+                                class="list-group-item list-group-item-action m-1"
+                                data-id="{{ $loop->index }}"
+                                onclick="playThis(this)"
+                            >
+                                {{ $song->music_name }}
+                            </a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script>
             const tes  = {!! json_encode($data->toArray()) !!};
         </script>
         <script src="{{ asset('assets/app/js/music.js') }}"></script>
+        <script src="{{
+                asset('assets/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js')
+            }}"></script>
     </body>
 </html>

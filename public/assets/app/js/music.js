@@ -75,6 +75,13 @@ function nextSong() {
     playSong();
 }
 
+//click play button
+function playThis(el) {
+    songIndex = el.dataset.id;
+    loadSong(songs[songIndex]);
+    playSong();
+}
+
 // Update progress bar
 function updateProgress(e) {
     const { duration, currentTime } = e.srcElement;
