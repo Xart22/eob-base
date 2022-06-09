@@ -1,0 +1,19 @@
+.container-game .card {
+    width: fit-content !important;
+    padding: 0px !important;
+}
+.container-game .card-body {
+    padding: 2px;
+}
+.container-game .card img {
+    width: 100px;
+    height: 100px;
+}
+.container-game p {
+    font-size: small;
+    font-weight: bolder;
+}
+
+h2 {
+    color: white;
+}

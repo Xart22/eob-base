@@ -1,0 +1,40 @@
+/* Movie */
+.search-bar-container {
+    background-color: transparent;
+}
+.card {
+    width: fit-content;
+    padding: 0;
+}
+.card-body {
+    width: fit-content;
+    padding: 0;
+    background-color: black;
+    position: relative;
+}
+
+.stars {
+    position: absolute !important;
+    top: 1;
+    bottom: 1;
+    font-size: 8px;
+}
+video {
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 10px;
+}
+.desc-movie {
+    font-size: 3px !important;
+}
+* {
+    font-family: "Poppins", sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    user-select: none;
+    color: white;
+}
+h2 {
+    color: white;
+}

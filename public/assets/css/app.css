@@ -1,0 +1,121 @@
+body {
+    background-color: black;
+    color: white;
+}
+.carousel-ads {
+    border: 1px solid black !important;
+    border-radius: 25px;
+}
+.carousel-ads .carousel {
+    overflow: hidden;
+    border-radius: 25px;
+}
+.rounded {
+    border-radius: 25px !important;
+}
+
+h2 {
+    color: white;
+    font-family: sans-serif;
+    font-size: large;
+}
+h6 {
+    font-size: 8px;
+    font-weight: bolder;
+}
+.contianer-info .card {
+    width: 140px;
+    height: 60px;
+    padding: 5px;
+    text-align: center;
+    background-color: transparent;
+    color: white;
+    border: 1px solid orange;
+}
+.contianer-info img {
+    height: 50px;
+    fill: white;
+}
+.text-icon {
+    width: 80px;
+    padding: 0px;
+    height: 50px;
+    font-size: 8px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+.contianer-info p {
+    font-size: 7px;
+    font-weight: normal;
+}
+.eta {
+    font-size: 5px !important;
+}
+/* news */
+/* external css: flickity.css */
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.container-news .card {
+    width: 161px;
+    height: 150px;
+    font-size: 9.8px;
+    font-weight: bolder;
+    word-wrap: break-word;
+    padding: 5px;
+    background-color: transparent;
+    border: 1px solid orange;
+}
+
+.gallery-cell {
+    margin-right: 10px;
+}
+.img-news {
+    width: 150px;
+    height: 100px;
+}
+
+/* cell number */
+.gallery-cell:before {
+    display: block;
+    text-align: center;
+    line-height: 200px;
+    font-size: 80px;
+    color: white;
+}
+
+.gallery-cell .card {
+    color: white;
+}
+a:link {
+    color: white;
+}
+a:visited {
+    color: white;
+}
+
+/* Timeline */
+
+/* Timeline End */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

@@ -1,0 +1,46 @@
+.timeline-wrapper {
+    margin-left: 1.5rem;
+    border-left: 3px solid #ddd;
+}
+.node {
+    padding-left: 0.5rem;
+    padding-bottom: 1.5rem;
+    position: relative;
+}
+.node h3,
+.node p {
+    margin: 0;
+}
+.node::before {
+    content: "";
+    width: 0.8rem;
+    height: 0.8rem;
+    background: #fff;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    position: absolute;
+    top: 0.3rem;
+    left: -0.5rem;
+}
+.progres-wrap {
+    padding: 50px;
+}
+.sukses::before {
+    background-color: #43c465;
+    border: 2px solid #43c465;
+}
+.reject::before {
+    background-color: #db2121;
+    border: 2px solid #db2121;
+}
+.warning::before {
+    background-color: #f7f716;
+    border: 2px solid #f7f716;
+}
+
+th {
+    font-weight: normal !important;
+}
+h5 {
+    color: black;
+}

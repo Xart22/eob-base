@@ -1,0 +1,9 @@
+.movie-card {
+    border: 1px solid white;
+    padding: 10px;
+    width: fit-content;
+}
+.cover-img {
+    width: 230;
+    height: 320;
+}
