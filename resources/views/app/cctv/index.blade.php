@@ -1,6 +1,14 @@
 @extends('app.layout') @section('header')
 <link rel="stylesheet" href="{{ asset('assets/app/css/cctv.css') }}" />
-<link href="{{ asset('css/vjs.css') }}" rel="stylesheet" />
+<style>
+    .cctv-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+</style>
 @endsection @section('content') @if($cctv_url != null)
 
 <script
@@ -9,7 +17,17 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
 ></script>
-<video id="video" controls muted autoplay preload="auto"></video>
+<div class="contianer cctv-container">
+    <video
+        id="video"
+        controls
+        muted
+        autoplay
+        preload="auto"
+        width="100%"
+        height="100%"
+    ></video>
+</div>
 <script>
     var video = document.getElementById("video");
     var videoSrc = "{{ $cctv_url }}";
@@ -34,9 +52,6 @@
     else if (video.canPlayType("application/vnd.apple.mpegurl")) {
         video.src = videoSrc;
     }
-    video.addEventListener("loadedmetadata", function () {
-        video.play();
-    });
 </script>
 @else
 <h1 style="color: white">Please Setting The Ip of Camera</h1>
