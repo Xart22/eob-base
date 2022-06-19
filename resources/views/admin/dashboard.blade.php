@@ -137,14 +137,16 @@
         </div>
         @if($data != null)
         <div class="row">
-            <div class="border p-3 w-100">
-                <h4>CCTV</h4>
-                <iframe
-                    src="{{ route('stream-cctv') }}"
-                    frameborder="0"
-                    height="500"
-                    width="900"
-                ></iframe>
+            <div class="col">
+                <div class="border p-3 w-100">
+                    <h4>CCTV</h4>
+                    <iframe
+                        src="{{ route('stream-cctv') }}"
+                        frameborder="0"
+                        width="100%"
+                        height="750px"
+                    ></iframe>
+                </div>
             </div>
         </div>
         @endif @if(!empty($route_name))
