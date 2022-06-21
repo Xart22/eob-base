@@ -49,7 +49,6 @@ Route::prefix('/app')->group(function () {
     Route::get('/game', [AppControllers::class, 'game'])->name('app-game');
     Route::get('/game-loading', [AppControllers::class, 'game_loading'])->name('loading-game');
     Route::get('/news/{id}', [AppControllers::class, 'news'])->name('app-news');
-    Route::get('/nvr/location', [NvrGPSControllers::class, 'getLocation'])->name('getlocation');
     Route::get('/nvr/cctv', [NvrGPSControllers::class, 'tes'])->name('play-cctv');
     Route::get('/ebooks', [AppControllers::class, 'ebook'])->name('app-ebooks');
     Route::get('/ebooks-loading', [AppControllers::class, 'ebook_loading'])->name('loading-ebooks');

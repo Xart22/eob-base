@@ -140,6 +140,7 @@
             <div class="col">
                 <div class="border p-3 w-100">
                     <h4>CCTV</h4>
+
                     <iframe
                         src="{{ route('stream-cctv') }}"
                         frameborder="0"
@@ -173,8 +174,16 @@
     </div>
     <!--/. container-fluid -->
 </section>
+<input type="hidden" id="locationUrl" value="{{ route('getlocation') }}" />
 <!-- /.content -->
 @endsection @section('script')
+<script type="importmap">
+    {
+        "imports": {
+            "socket.io-client": "https://cdn.socket.io/4.4.1/socket.io.esm.min.js"
+        }
+    }
+</script>
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('assets/js/dashboard.js') }}"></script>
+<script type="module" src="{{ asset('assets/js/dashboard.js') }}"></script>
 @endsection

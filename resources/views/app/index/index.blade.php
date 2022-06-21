@@ -345,11 +345,19 @@
         </div>
     </div>
 </div>
-
+<input type="hidden" id="locationUrl" value="{{ route('getlocation') }}" />
 @endsection @section('script')
+
 <script src="{{ asset('assets/plugins/flickity/flickity.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('assets/app/js/location.js') }}"></script>
+<script type="importmap">
+    {
+        "imports": {
+            "socket.io-client": "https://cdn.socket.io/4.4.1/socket.io.esm.min.js"
+        }
+    }
+</script>
+<script type="module" src="{{ asset('assets/app/js/location.js') }}"></script>
 
 <script>
     $(document).ready(function () {

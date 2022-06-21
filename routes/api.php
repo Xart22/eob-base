@@ -1,8 +1,9 @@
 <?php
-
+use App\Http\Controllers\NvrGPSControllers;
 use App\Http\Controllers\InfoControllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/stream/info-delete', [InfoControllers::class, 'delete_info']);
+
+Route::post('/nvr/location', [NvrGPSControllers::class, 'getLocation'])->name('getlocation');

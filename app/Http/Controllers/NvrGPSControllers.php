@@ -15,20 +15,16 @@ use function convertDMSToDecimal;
 
 class NvrGPSControllers extends Controller
 {
-    public function getLocation()
+    public function getLocation(Request $request)
     {
         try {
             $setting = DB::table('setting')->first();
             $route = Route::with('routeList', 'routeList.getLocation')->first();
             $textinfo = Info::find(1);
             $locations = Location::all();
-            $response = Http::withDigestAuth('admin', 'adm12345')->get('http://' . $setting->ip_nvr . '/ISAPI/Mobile/location/status?format=json');
-            $xml_respon = simplexml_load_string($response->body());
-            $tojson = json_encode($xml_respon);
-            $res_json = json_decode($tojson, TRUE);
-            $position_lat = convertDMSToDecimal($res_json['latitude']);
-            $position_long = convertDMSToDecimal($res_json['longitude']);
-            $speed = floatval($res_json['speed']);
+            $position_lat = $request['lat'];
+            $position_long = $request['lng'];
+            $speed = floatval($request['speed']);
             $arr_location = [];
             $arr_distance = [];
             $arr_eta = [];
@@ -76,7 +72,7 @@ class NvrGPSControllers extends Controller
 
 
             return response()->json([
-                'speed' => $res_json['speed'],
+                'speed' => $speed,
                 'position' => $position_name,
                 'location_name' => $arr_location,
                 'distance_route' => $arr_distance,

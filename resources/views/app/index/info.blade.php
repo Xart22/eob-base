@@ -169,14 +169,3 @@
     </div>
     <!-- News End -->
 </div>
-<script>
-    $(document).ready(function () {
-        $(".js-flickity").flickity({
-            freeScroll: true,
-            contain: true,
-            prevNextButtons: false,
-            pageDots: false,
-        });
-        updateLocation();
-    });
-</script>
