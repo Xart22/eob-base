@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-const socket = io("http://153.92.5.205/");
+const socket = io("https://kai-socket.sonajaya.com/");
 const url = $("#locationUrl").val();
 socket.on("connect", () => {
     console.log(socket.connected); // true
