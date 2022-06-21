@@ -33,7 +33,7 @@ class NvrGPSControllers extends Controller
             //GET POSITON
             foreach ($locations as $location) {
                 $position = $this->haversineGreatCircleDistance($position_lat, $position_long, $location->lat, $location->long);
-                if ($position <= 0.5) {
+                if ($position <= 20) {
                     $position_name = $location->location_name;
                     break;
                 } else {
@@ -72,7 +72,7 @@ class NvrGPSControllers extends Controller
 
 
             return response()->json([
-                'speed' => $speed,
+                'speed' => ($speed <= 20.00) ? 0 : $speed,
                 'position' => $position_name,
                 'location_name' => $arr_location,
                 'distance_route' => $arr_distance,

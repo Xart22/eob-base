@@ -32,7 +32,17 @@
                             </div>
                             <div class="text-icon">
                                 Station Tujuan
-                                <p id="destination"></p>
+                                <div class="row">
+                                    <div class="col">
+                                        <p id="destination"></p>
+                                    </div>
+                                    <div class="col">
+                                        <span
+                                            class="text-muted eta"
+                                            id="destinationEta"
+                                        ></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -9,23 +9,25 @@ var lng = 0;
 var speed = 0;
 
 socket.on("message", (msg) => {
+    console.log(msg);
     lat = msg.lat;
     lng = msg.lon;
     speed = msg.speed;
+    updateLocation();
 });
 
 $(document).ready(function () {
-    updateLocation();
+    socket.emit("message", "gps");
 });
 // const player = new JSMpeg.Player("ws://localhost:9090", {
 //     autoplay: true,
 // });
 setInterval(() => {
     socket.emit("message", "gps");
-    updateLocation();
-}, 1000);
+}, 60000);
 
 function updateLocation() {
+    console.log(lat, lng, speed);
     $.post(url, {
         lat: lat,
         lng: lng,

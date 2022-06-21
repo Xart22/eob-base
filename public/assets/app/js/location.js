@@ -9,27 +9,29 @@ var lng = 0;
 var speed = 0;
 
 socket.on("message", (msg) => {
+    console.log(msg);
     lat = msg.lat;
     lng = msg.lon;
     speed = msg.speed;
+    updateLocation();
 });
 
 $(document).ready(function () {
+    socket.emit("message", "gps");
     $(".js-flickity").flickity({
         freeScroll: true,
         contain: true,
         prevNextButtons: false,
         pageDots: false,
     });
-    updateLocation();
 });
+
 // const player = new JSMpeg.Player("ws://localhost:9090", {
 //     autoplay: true,
 // });
 setInterval(() => {
     socket.emit("message", "gps");
-    updateLocation();
-}, 1000);
+}, 60000);
 function updateLocation() {
     $.post(url, {
         lat: lat,
@@ -37,32 +39,28 @@ function updateLocation() {
         speed: speed,
     })
         .done((res) => {
+            console.log(res);
             const destionation =
                 res.location_name[res.location_name.length - 1];
             const locationName = res.location_name;
             const position = res.position;
             const eta = res.eta;
             const distance = res.distance_route;
+            console.log(distance);
             const nextStation = getNextStation(distance, locationName, eta);
             const destionationETA = moment()
                 .add(eta[distance.length - 1], "minutes")
                 .format("hh:mm");
-            const destionationDistance = `<br /><span
-            class="text-muted eta"
-            >${distance[distance.length - 1]} KM<br />
-            ETA : ${destionationETA}</span
-        >`;
-            const nextETA = `<br /><span
-            class="text-muted eta"
-            >${nextStation.distance} KM<br />
-            ETA : ${nextStation.eta}</span
-        >`;
+            const destionationDistance = `${distance[distance.length - 1]} KM`;
+            const nextDistance = `${nextStation.distance} KM`;
             $("#next").text(nextStation.name);
-            $("#next").append(nextETA);
+            $("#nexDistance").text(nextDistance);
+            $("#nextETA").text(nextStation.eta);
             $("#from").text(res.location_name[0]);
             $("#position").text(position);
             $("#destination").text(destionation);
-            $("#destination").append(destionationDistance);
+            $("#destinationDistance").text(destionationDistance);
+            $("#destinationEta").text(destionationETA);
 
             $.map($(".input span"), function (v, i) {
                 const travelTime = moment()
@@ -70,9 +68,8 @@ function updateLocation() {
                     .format("hh:mm");
                 $(v).attr("data-year", travelTime);
             });
-
+            $("#route").empty();
             $.each(distance, (i, v) => {
-                $("#route").empty();
                 if (v == 0) {
                     $("#route").append(
                         `<div class="node sukses">

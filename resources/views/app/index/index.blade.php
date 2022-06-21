@@ -106,7 +106,19 @@
                             </div>
                             <div class="text-icon">
                                 Station Tujuan
-                                <p id="destination"></p>
+                                <div class="row">
+                                    <span id="destination"></span>
+                                    <span
+                                        class="text-muted eta"
+                                        id="destinationDistance"
+                                    ></span>
+                                </div>
+                                <div class="row">
+                                    <span
+                                        class="text-muted eta"
+                                        id="destinationEta"
+                                    ></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -143,7 +155,20 @@
                             </div>
                             <div class="text-icon">
                                 Station Selanjutnya
-                                <p id="next"></p>
+
+                                <div class="row">
+                                    <span id="next"></span>
+                                    <span
+                                        class="text-muted eta"
+                                        id="nexDistance"
+                                    ></span>
+                                </div>
+                                <div class="row">
+                                    <span
+                                        class="text-muted eta"
+                                        id="destinationEta"
+                                    ></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -360,40 +385,16 @@
 <script type="module" src="{{ asset('assets/app/js/location.js') }}"></script>
 
 <script>
-    $(document).ready(function () {
-        $("#carouselLoading").scheletrone({
-            url: "{{route('loading-carouselLoading')}}",
-            debug: {
-                latency: 100,
-            },
-            incache: false,
-            onComplete: function () {
-                console.info("plugin is loaded");
-                console.info("wait 3 secs for the data");
-            },
-        });
-        $("#infoLoading").scheletrone({
-            url: "{{route('loading-infoLoading')}}",
-            debug: {
-                latency: 100,
-            },
-            incache: false,
-            onComplete: function () {
-                console.info("plugin is loaded");
-                console.info("wait 3 secs for the data");
-            },
-        });
-        function detailItem(e) {
-            console.log(e);
-            let title = $(e).data("title");
-            let img = $(e).data("img");
-            let content = $(e).data("content");
-            $("#imgHeader").attr("src", "");
-            $("#imgHeader").attr("src", img);
-            $("#content").append("<h4>" + title + "</h4>");
-            $("#content").append(content);
-        }
-    });
+    function detailItem(e) {
+        console.log(e);
+        let title = $(e).data("title");
+        let img = $(e).data("img");
+        let content = $(e).data("content");
+        $("#imgHeader").attr("src", "");
+        $("#imgHeader").attr("src", img);
+        $("#content").append("<h4>" + title + "</h4>");
+        $("#content").append(content);
+    }
 </script>
 
 @endsection
