@@ -160,13 +160,13 @@
                                     <span id="next"></span>
                                     <span
                                         class="text-muted eta"
-                                        id="nexDistance"
+                                        id="nextDistance"
                                     ></span>
                                 </div>
                                 <div class="row">
                                     <span
                                         class="text-muted eta"
-                                        id="destinationEta"
+                                        id="nextEta"
                                     ></span>
                                 </div>
                             </div>

@@ -54,8 +54,8 @@ function updateLocation() {
             const destionationDistance = `${distance[distance.length - 1]} KM`;
             const nextDistance = `${nextStation.distance} KM`;
             $("#next").text(nextStation.name);
-            $("#nexDistance").text(nextDistance);
-            $("#nextETA").text(nextStation.eta);
+            $("#nextDistance").text(nextDistance);
+            $("#nextEta").text(nextStation.eta);
             $("#from").text(res.location_name[0]);
             $("#position").text(position);
             $("#destination").text(destionation);
