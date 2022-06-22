@@ -19,7 +19,7 @@ class NvrGPSControllers extends Controller
     {
         try {
             $setting = DB::table('setting')->first();
-            $route = Route::with('routeList', 'routeList.getLocation')->first();
+            $route = Route::where('id',$setting->route_id)->with('routeList', 'routeList.getLocation')->first();
             $textinfo = Info::find(1);
             $locations = Location::all();
             $position_lat = $request['lat'];
