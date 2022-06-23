@@ -15,4 +15,10 @@ class Route extends Model
     {
         return $this->hasMany(RouteLocation::class);
     }
+
+    public function locationName($idid)
+    {
+        $location = Location::find($idid);
+        return $location->location_name;
+    }
 }

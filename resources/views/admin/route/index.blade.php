@@ -3,7 +3,7 @@
 
 <link
     rel="stylesheet"
-    href="{{ asset('assets/plugins/select2/css/select2.min.css') }}"
+    href="{{ asset('assets/plugins/chosen_v1.8.7/chosen.min.css') }}"
 />
 
 <link rel="stylesheet" href="{{ asset('assets/css/route.css') }}" />
@@ -40,7 +40,7 @@
                                 <label>From</label>
                                 <select
                                     style="width: 100%"
-                                    class="select2 form-control"
+                                    class="chosen-select form-control"
                                     name="from"
                                 >
                                     <option></option>
@@ -59,7 +59,7 @@
                                 <label>Transit</label>
                                 <select
                                     style="width: 100%"
-                                    class="select2 form-control"
+                                    class="chosen-select form-control"
                                     name="translit[]"
                                     multiple
                                 >
@@ -80,7 +80,7 @@
                                 <label>TO</label>
                                 <select
                                     style="width: 100%"
-                                    class="select2 form-control"
+                                    class="chosen-select form-control"
                                     name="to"
                                 >
                                     <option></option>
@@ -205,13 +205,10 @@
 </div>
 
 @endsection @section('script')
-<script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
+<script src="{{
+        asset('assets/plugins/chosen_v1.8.7/chosen.jquery.min.js')
+    }}"></script>
 <script>
-    $(document).ready(function () {
-        $(".select2").select2({
-            placeholder: "Select a Location",
-            allowClear: true,
-        });
-    });
+    $(".chosen-select").chosen();
 </script>
 @endsection

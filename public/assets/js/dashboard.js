@@ -8,7 +8,7 @@ var lat = 0;
 var lng = 0;
 var speed = 0;
 
-socket.on("message", (msg) => {
+socket.on("data", (msg) => {
     console.log(msg);
     lat = msg.lat;
     lng = msg.lon;
