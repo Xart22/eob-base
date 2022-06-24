@@ -28,17 +28,15 @@ class NvrGPSControllers extends Controller
             $arr_location = [];
             $arr_distance = [];
             $arr_eta = [];
+            $position_name = 'Unknown';
 
 
             //GET POSITON
             foreach ($locations as $location) {
                 $position = $this->haversineGreatCircleDistance($position_lat, $position_long, $location->lat, $location->long);
-                if ($position <= 20) {
-                    $position_name = $location->location_name;
-                    break;
-                } else {
-                    $position_name = 'Unknow';
-                }
+               if ($position < 1) {
+                   $position_name = $location->location_name;
+               }
             }
 
 

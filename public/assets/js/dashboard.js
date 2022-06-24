@@ -24,7 +24,7 @@ $(document).ready(function () {
 // });
 setInterval(() => {
     socket.emit("message", "gps");
-}, 60000);
+}, 20000);
 
 function updateLocation() {
     console.log(lat, lng, speed);
@@ -34,6 +34,7 @@ function updateLocation() {
         speed: speed,
     })
         .done((res) => {
+            console.log(res);
             const destionation =
                 res.location_name[res.location_name.length - 1];
             const speed = res.speed;

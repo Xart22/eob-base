@@ -30,7 +30,7 @@ $(document).ready(function () {
 // });
 setInterval(() => {
     socket.emit("message", "gps");
-}, 60000);
+}, 20000);
 function updateLocation() {
     $.post(url, {
         lat: lat,
@@ -45,7 +45,6 @@ function updateLocation() {
             const position = res.position;
             const eta = res.eta;
             const distance = res.distance_route;
-            console.log(distance);
             const nextStation = getNextStation(distance, locationName, eta);
             const destionationETA = moment()
                 .add(eta[distance.length - 1], "minutes")

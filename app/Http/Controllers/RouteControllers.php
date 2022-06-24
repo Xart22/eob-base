@@ -49,19 +49,21 @@ class RouteControllers extends Controller
                 'from' => 'required',
                 'to' => 'required',
                 'translit' => 'required',
+                'trans'=>'required',
 
             ]);
-
+           
             if ($validator->fails()) {
-
+                dd($validator->getMessageBag());
                 return back()->withErrors($validator->getMessageBag())->withInput();
             }
+            $trans = explode(",",$req->trans);
             $route = Route::create([
                 'route_name' => $req->route_name,
                 'from' => $req->from,
                 'to' => $req->to
             ]);
-            foreach ($req->translit as $location) {
+            foreach ($trans as $location) {
                 RouteLocation::create([
                     'route_id' => $route->id,
                     'location_id' => $location
@@ -69,6 +71,7 @@ class RouteControllers extends Controller
             }
             return redirect()->route('route.index')->with('');
         } catch (\Throwable $err) {
+            dd($err->getMessage());
             return redirect()->route('route.index')->with('error', $err->getMessage());
         }
     }

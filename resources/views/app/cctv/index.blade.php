@@ -28,6 +28,14 @@
         height="100%"
     ></video>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <p id="speed"></p>
+        </div>
+        <div class="col"><p id="lokasi"></p></div>
+    </div>
+</div>
 <script>
     var video = document.getElementById("video");
     var videoSrc = "{{ $cctv_url }}";
@@ -56,24 +64,55 @@
 @else
 <h1 style="color: white">Please Setting The Ip of Camera</h1>
 @endif @endsection @section('script')
-<script>
-    $(document).ready(function () {
-        updateLocation();
-        setInterval(() => {
-            updateLocation();
-        }, 1000);
-    });
-
-    function updateLocation() {
-        $.get("/public/app/nvr/location", (res) => {
-            const destionation =
-                res.location_name[res.location_name.length - 1];
-            const speed = res.speed <= 20 ? 0 : res.speed;
-            const location = res.position;
-            const eta = res.eta;
-            $("#speed").text(speed + " Km/j");
-            $("#location").text(location);
-        });
+<script type="importmap">
+    {
+        "imports": {
+            "socket.io-client": "https://cdn.socket.io/4.4.1/socket.io.esm.min.js"
+        }
     }
 </script>
+<script type="module">
+            import { io } from "socket.io-client";
+            const socket = io("https://kai-socket.sonajaya.com/");
+            const url = '{{ route('getlocation') }}';
+            socket.on("connect", () => {
+            console.log(socket.connected); // true
+        });
+        var lat = 0;
+        var lng = 0;
+        var speed = 0;
+        socket.on("data", (msg) => {
+            lat = msg.lat;
+            lng = msg.lon;
+            speed = msg.speed;
+            updateLocation();
+        });
+        $(document).ready(function () {
+            socket.emit("message", "gps");
+
+        });
+        setInterval(() => {
+        socket.emit("message", "gps");
+    }, 20000);
+    function updateLocation() {
+        $.post(url, {
+            lat: lat,
+            lng: lng,
+            speed: speed,
+        })
+            .done(function (res) {
+                const destionation =
+                    res.location_name[res.location_name.length - 1];
+                const speed = res.speed <= 20 ? 0 : res.speed;
+                const location = res.position;
+                const eta = res.eta;
+                $("#speed").text('Kecepatan : '+speed + " Km/j");
+                $("#lokasi").text('Lokasi : '+location);
+            })
+            .fail(function (data) {
+                console.log(data);
+            });
+    }
+</script>
+
 @endsection

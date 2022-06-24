@@ -62,6 +62,7 @@
                                     class="chosen-select form-control"
                                     name="translit[]"
                                     multiple
+                                    id="translit"
                                 >
                                     <option></option>
                                     @foreach( $data_location as $location)
@@ -71,6 +72,7 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <input type="hidden" name="trans" id="trans" />
                         </div>
                     </div>
 
@@ -209,6 +211,21 @@
         asset('assets/plugins/chosen_v1.8.7/chosen.jquery.min.js')
     }}"></script>
 <script>
+    const arr = [];
     $(".chosen-select").chosen();
+    $("#translit")
+        .chosen({
+            no_results_text: "Oops, nothing found!",
+            width: "100%",
+            search_contains: true,
+        })
+        .on("change", function (evt, params) {
+            if (params.deselected) {
+                arr.splice(arr.indexOf(params.deselected), 1);
+            } else {
+                arr.push(params.selected);
+            }
+            $("#trans").val(arr);
+        });
 </script>
 @endsection
