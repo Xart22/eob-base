@@ -80,18 +80,11 @@ class MovieControllers extends Controller
 
             Storage::putFileAs($this->PATH_FILE_DB_BANNER, $banner, $name_file_banner);
             Storage::putFileAs($this->PATH_FILE_DB_MOVIE, $file_movie, $name_file_movie);
-            return response()->json([
-                'code' => 200,
-                'status' => 'success',
-                'message' => 'Successfully uploaded.',
-                'url' => route('flashMsg', 'movie-success')
-            ]);
+            
+            return redirect()->route('movie.index')->with('success', 'Create movie success');
         } catch (\Throwable $err) {
-            return response()->json([
-                'code' => 400,
-                'status' => 'failed',
-                'message' => $err->getMessage(),
-            ], 400);
+            return redirect()->route('movie.index')->with('error', $err->getMessage());
+           
         }
     }
 
@@ -165,18 +158,9 @@ class MovieControllers extends Controller
                 'movie_actors' => $req->movie_actors,
                 'movie_director' => $req->movie_director,
             ]);
-            return response()->json([
-                'code' => 200,
-                'status' => 'success',
-                'message' => 'Successfully uploaded.',
-                'url' => route('flashMsg', 'movie-success')
-            ]);
+            return redirect()->route('movie.index')->with('success', 'Update movie success');
         } catch (\Throwable $err) {
-            return response()->json([
-                'code' => 400,
-                'status' => 'failed',
-                'message' => $err->getMessage(),
-            ], 400);
+            return redirect()->route('movie.index')->with('error', $err->getMessage());
         }
     }
 

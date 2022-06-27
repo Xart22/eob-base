@@ -1,18 +1,17 @@
+<link
+    rel="stylesheet"
+    href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}"
+/>
+<link rel="stylesheet" href="{{ asset('assets/app/css/movie.css') }}" />
 <div class="search-bar-container mt-5">
     <form action="">
         <input type="search" placeholder="Search Movie" data-search />
         <i class="fa fa-search"></i>
     </form>
 </div>
-@foreach($data as $movie) @if(strpos(strtolower($movie->category),'korea') !==
-false )
-<div class="head-text text-center mt-2">
-    <h2>Korea</h2>
-</div>
-@break @endif @endforeach
+
 <div class="d-flex flex-wrap mt-2">
-    @foreach($data as $movie) @if(strpos(strtolower($movie->category),'korea')
-    !== false )
+    @foreach($data as $movie)
     <div
         class="col-md-3 p-1 bd-highlight mb-3"
         data-filter-item
@@ -35,109 +34,9 @@ false )
             ></a>
         </div>
     </div>
-    @endif @endforeach
+    @endforeach
 </div>
 
-@foreach($data as $movie) @if(strpos(strtolower($movie->category),'action') !==
-false )
-<div class="head-text text-center mt-2">
-    <h2>Action</h2>
-</div>
-@break @endif @endforeach
-<div class="d-flex flex-wrap mt-2">
-    @foreach($data as $movie) @if(strpos(strtolower($movie->category),'action')
-    !== false )
-    <div
-        class="col-md-3 p-1 bd-highlight mb-3"
-        data-filter-item
-        data-filter-name="{{strtolower($movie->movie_name)}}"
-    >
-        <div class="card">
-            <a href="{{route('app-play-movie',$movie->uuid)}}">
-                <div class="card-body">
-                    <img
-                        src="{{route('file-show-movie',$movie->path_banner)}}"
-                        width="70"
-                        height="110"
-                    />
-                    <div class="stars">
-                        {{$movie->movie_rating
-
-                        }}
-                        <i class="fas fa-star" style="color: yellow"></i>
-                    </div></div
-            ></a>
-        </div>
-    </div>
-    @endif @endforeach
-</div>
-@foreach($data as $movie) @if(strpos(strtolower($movie->category),'comedy') !==
-false )
-<div class="head-text text-center mt-2">
-    <h2>Comedy</h2>
-</div>
-@break @endif @endforeach
-
-<div class="d-flex flex-wrap mt-2">
-    @foreach($data as $movie) @if(strpos(strtolower($movie->category),'comedy')
-    !== false )
-    <div
-        class="col-md-3 p-1 bd-highlight mb-3"
-        data-filter-item
-        data-filter-name="{{strtolower($movie->movie_name)}}"
-    >
-        <div class="card">
-            <a href="{{route('app-play-movie',$movie->uuid)}}">
-                <div class="card-body">
-                    <img
-                        src="{{route('file-show-movie',$movie->path_banner)}}"
-                        width="70"
-                        height="110"
-                    />
-                    <div class="stars">
-                        {{$movie->movie_rating
-
-                        }}
-                        <i class="fas fa-star" style="color: yellow"></i>
-                    </div></div
-            ></a>
-        </div>
-    </div>
-    @endif @endforeach
-</div>
-@foreach($data as $movie) @if(strpos(strtolower($movie->category),'kids') !==
-false )
-<div class="head-text text-center mt-2">
-    <h2>Kids</h2>
-</div>
-@break @endif @endforeach
-<div class="d-flex flex-wrap mt-2">
-    @foreach($data as $movie) @if(strpos(strtolower($movie->category),'kids')
-    !== false )
-    <div
-        class="col-md-3 p-1 bd-highlight mb-3"
-        data-filter-item
-        data-filter-name="{{strtolower($movie->movie_name)}}"
-    >
-        <div class="card">
-            <a href="{{route('app-play-movie',$movie->uuid)}}">
-                <div class="card-body">
-                    <img
-                        src="{{route('file-show-movie',$movie->path_banner)}}"
-                        width="70"
-                        height="110"
-                    />
-                    <div class="stars">
-                        {{$movie->movie_rating
-
-                        }}
-                        <i class="fas fa-star" style="color: yellow"></i>
-                    </div></div
-            ></a>
-        </div>
-    </div>
-    @endif @endforeach
-</div>
 <div class="head-text text-center mt-2">
     <h2>Chanel TV</h2>
 </div>
