@@ -32,10 +32,31 @@
             href="{{ asset('assets/plugins/skeleton/jquery.skeleton.css') }}"
         />
         <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}" />
+
         @yield('header')
     </head>
     <body>
-        <div class="container">@yield('content')</div>
+        <a onclick="history.back()" id="back">
+            <div class="row" style="background-color: #e69b40">
+                <div class="col ml-3 p-3">
+                    <img
+                        src="{{ asset('assets/img/back.png') }}"
+                        height="25px"
+                        width="25px"
+                        style="
+                            float: left;
+                            margin-right: 50px;
+                            filter: invert(100%);
+                        "
+                    />
+                </div>
+            </div>
+        </a>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">@yield('content')</div>
+            </div>
+        </div>
         <script src="{{
                 asset('assets/plugins/jquery/jquery.min.js')
             }}"></script>

@@ -395,6 +395,9 @@
         $("#content").append("<h4>" + title + "</h4>");
         $("#content").append(content);
     }
+    $(document).ready(function () {
+        $("#back").hide();
+    });
 </script>
 
 @endsection
