@@ -36,5 +36,8 @@
             console.info("wait 3 secs for the data");
         },
     });
+    $(document).ready(function () {
+        $("#back").hide();
+    });
 </script>
 @endsection
