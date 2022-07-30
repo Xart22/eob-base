@@ -50,16 +50,18 @@
                 <div class="col-md-12">
                     <div style="overflow: scroll; height: 400px">
                         <div class="list-group" id="list-group">
-                            @foreach ($data as $song)
+                            @foreach ($tag as $t)
+                            <h4 class="m-2">{{ $t }}</h4>
+                            @foreach ($data as $m) @if ($m->music_tag == $t)
                             <a
                                 href="#"
-                                class="list-group-item list-group-item-action m-1"
-                                data-id="{{ $loop->index }}"
-                                onclick="playThis(this)"
+                                class="list-group-item list-group-item-action"
+                                id="{{ $m->music_id }}"
+                                onclick="playMusic(this.id)"
                             >
-                                {{ $song->music_name }}
+                                {{ $m->music_name }}
                             </a>
-                            @endforeach
+                            @endif @endforeach @endforeach
                         </div>
                     </div>
                 </div>

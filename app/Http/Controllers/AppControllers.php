@@ -55,8 +55,8 @@ class AppControllers extends Controller
 
     public function music()
     {
-
-        return view('app.music.index', ['data' => Music::all()]);
+      
+        return view('app.music.index', ['data' => Music::all(),'tag'=>Music::all()->pluck('music_tag')->unique()]);
     }
     public function company($id)
     {

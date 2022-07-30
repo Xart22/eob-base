@@ -11,7 +11,6 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 20vw;
     height: 100px;
     max-width: 1000px;
     position: relative;
@@ -24,6 +23,7 @@
     background-color: #32a852;
     position: relative;
     border-radius: 50%;
+    margin: 0 10px;
 }
 .input:hover {
     cursor: pointer;

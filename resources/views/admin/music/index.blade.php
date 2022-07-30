@@ -35,11 +35,11 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label>Tag</label>
+                                <label>Category</label>
                                 <input
                                     type="text"
                                     class="form-control"
-                                    placeholder="Enter Music Tag"
+                                    placeholder="Enter Music Category"
                                     name="music_tag"
                                     required
                                     value="{{ old('music_tag') }}"
@@ -79,12 +79,7 @@
                     <div class="form-group">
                         <div class="progress">
                             <div
-                                class="
-                                    progress-bar
-                                    progress-bar-striped
-                                    progress-bar-animated
-                                    bg-danger
-                                "
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
                                 role="progressbar"
                                 aria-valuenow="0"
                                 aria-valuemin="0"

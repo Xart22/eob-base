@@ -152,20 +152,21 @@
         </div>
         @endif @if(!empty($route_name))
         <div class="row mt-3">
-            <div class="w-100 p-3 border">
-                Destination : {{ $route_name }}
-
-                <div class="flex-parent p-5">
-                    <div class="input-flex-container">
-                        @foreach($route as $location)
-                        <div class="input">
-                            <span
-                                class="text-center"
-                                data-info="{{ $location }}"
-                                data-year="ETA 00:00"
-                            ></span>
+            <div class="col">
+                <div class="w-100 p-3 border">
+                    Destination : {{ $route_name }}
+                    <div class="flex-parent p-2">
+                        <div class="input-flex-container">
+                            @foreach($route as $location)
+                            <div class="input">
+                                <span
+                                    class="text-center"
+                                    data-info="{{ $location }}"
+                                    data-year="ETA 00:00"
+                                ></span>
+                            </div>
+                            @endforeach
                         </div>
-                        @endforeach
                     </div>
                 </div>
             </div>
