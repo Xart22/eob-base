@@ -18,10 +18,8 @@ socket.on("data", (msg) => {
 $(document).ready(function () {
     socket.emit("message", "gps");
     $(".js-flickity").flickity({
-        freeScroll: true,
         contain: true,
         prevNextButtons: false,
-        pageDots: false,
     });
 });
 

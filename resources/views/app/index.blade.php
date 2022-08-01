@@ -290,9 +290,7 @@
 <script src="{{ asset('assets/app/js/location.js') }}"></script>
 <script>
     $(".js-flickity").flickity({
-        freeScroll: true,
         contain: true,
-
         prevNextButtons: false,
         pageDots: false,
     });
