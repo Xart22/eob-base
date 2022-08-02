@@ -17,22 +17,20 @@ socket.on("data", (msg) => {
 });
 
 $(document).ready(function () {
-    socket.emit("message", "gps");
+    updateLocation();
+    //socket.emit("message", "gps");
 });
 // const player = new JSMpeg.Player("ws://localhost:9090", {
 //     autoplay: true,
 // });
 setInterval(() => {
-    socket.emit("message", "gps");
+    updateLocation();
+    //socket.emit("message", "gps");
 }, 20000);
 
 function updateLocation() {
     console.log(lat, lng, speed);
-    $.post(url, {
-        lat: lat,
-        lng: lng,
-        speed: speed,
-    })
+    $.get(url)
         .done((res) => {
             console.log(res);
             const destionation =
