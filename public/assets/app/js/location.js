@@ -16,7 +16,8 @@ socket.on("data", (msg) => {
 });
 
 $(document).ready(function () {
-    socket.emit("message", "gps");
+    //socket.emit("message", "gps");
+    updateLocation();
     $(".js-flickity").flickity({
         contain: true,
         prevNextButtons: false,
@@ -27,14 +28,11 @@ $(document).ready(function () {
 //     autoplay: true,
 // });
 setInterval(() => {
-    socket.emit("message", "gps");
+    //socket.emit("message", "gps");
+    updateLocation();
 }, 20000);
 function updateLocation() {
-    $.post(url, {
-        lat: lat,
-        lng: lng,
-        speed: speed,
-    })
+    $.get(url)
         .done((res) => {
             console.log(res);
             const destionation =

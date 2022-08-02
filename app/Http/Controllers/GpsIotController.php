@@ -13,35 +13,29 @@ use stdClass;
 
 use function convertDMSToDecimal;
 
-class NvrGPSControllers extends Controller
+class GpsIotController extends Controller
 {
-    public function getLocation(Request $request)
+    public function getLocationIot(Request $request)
     {
         try {
             $setting = DB::table('setting')->first();
-            $route = Route::with('routeList', 'routeList.getLocation')->first();
+            $route = Route::where('id', $setting->route_id)->with('routeList', 'routeList.getLocation')->first();
             $textinfo = Info::find(1);
             $locations = Location::all();
-            $response = Http::withDigestAuth('admin', 'Adm12345!')->get('http://' . $setting->ip_nvr . '/ISAPI/Mobile/location/status?format=json');
-            $xml_respon = simplexml_load_string($response->body());
-            $tojson = json_encode($xml_respon);
-            $res_json = json_decode($tojson, TRUE);
-            $position_lat = convertDMSToDecimal($res_json['latitude']);
-            $position_long = convertDMSToDecimal($res_json['longitude']);
-            $speed = floatval($res_json['speed']);
+            $position_lat = $request['lat'];
+            $position_long = $request['lng'];
+            $speed = floatval($request['speed']);
             $arr_location = [];
             $arr_distance = [];
             $arr_eta = [];
+            $position_name = 'Unknown';
 
 
             //GET POSITON
             foreach ($locations as $location) {
                 $position = $this->haversineGreatCircleDistance($position_lat, $position_long, $location->lat, $location->long);
-                if ($position <= 0.5) {
+                if ($position < 1) {
                     $position_name = $location->location_name;
-                    break;
-                } else {
-                    $position_name = 'Unknow';
                 }
             }
 
@@ -76,7 +70,7 @@ class NvrGPSControllers extends Controller
 
 
             return response()->json([
-                'speed' => $res_json['speed'],
+                'speed' => ($speed <= 20.00) ? 0 : $speed,
                 'position' => $position_name,
                 'location_name' => $arr_location,
                 'distance_route' => $arr_distance,
@@ -89,11 +83,6 @@ class NvrGPSControllers extends Controller
             ], 500);
         }
     }
-
-    public function calculateDistance()
-    {
-    }
-
 
 
     function haversineGreatCircleDistance(
