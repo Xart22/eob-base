@@ -25,7 +25,39 @@
                                     placeholder="Enter IP NVR"
                                     name="ip_nvr"
                                     required
-                                    value="{{ old('ip_nvr') }}"
+                                    value="{{ $data->ip_nvr }}"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label
+                                    >Interval Update Data GPS ( Seconds )</label
+                                >
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder="10 Seconds"
+                                    name="interval_update_location"
+                                    required
+                                    value="{{
+                                        old('interval_update_location')
+                                    }}"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Radius Location ( Meter )</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder="200 Meter"
+                                    name="radius_location"
+                                    required
+                                    value="{{ old('radius_location') }}"
                                     autocomplete="off"
                                 />
                             </div>
@@ -34,14 +66,80 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label>IP CCTV</label>
+                                <label>Nomor KA</label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     class="form-control"
-                                    placeholder="Enter IP CCTV"
-                                    name="cctv"
-                                    required
-                                    value="{{ old('cctv') }}"
+                                    placeholder=""
+                                    name="nomor_ka"
+                                    value="{{ old('nomor_ka') }}"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Nama KA</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder=""
+                                    name="nama_ka"
+                                    value="{{ old('nama_ka') }}"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Relasi KA</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder=""
+                                    name="relasi_ka"
+                                    value="{{ old('relasi_ka') }}"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Nama CSOT</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder=""
+                                    name="nama_csot"
+                                    value="{{ old('nama_csot') }}"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>NIPP CSOT</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder=""
+                                    name="nipp"
+                                    value="{{ old('nipp') }}"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>No HP</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder=""
+                                    name="no_hp"
+                                    value="{{ old('no_hp') }}"
                                     autocomplete="off"
                                 />
                             </div>
@@ -98,18 +196,116 @@
                                 />
                             </div>
                         </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label
+                                    >Interval Update Data GPS ( Seconds )</label
+                                >
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder="10 Seconds"
+                                    name="interval_update_location"
+                                    required
+                                    value="{{
+                                        $data->interval_update_location
+                                    }}"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Radius Location ( Meter )</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder="200 Meter"
+                                    name="radius_location"
+                                    required
+                                    value="{{ $data->radius_location }}"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
-                                <label>IP CCTV</label>
+                                <label>Nomor KA</label>
                                 <input
-                                    type="text"
+                                    type="number"
                                     class="form-control"
-                                    placeholder="Enter IP CCTV"
-                                    name="cctv"
-                                    required
-                                    value="{{ $data->cctv }}"
+                                    placeholder=""
+                                    name="nomor_ka"
+                                    value="{{ $data->nomor_ka }}"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Nama KA</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder=""
+                                    name="nama_ka"
+                                    value="{{ $data->nama_ka }}"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Relasi KA</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder=""
+                                    name="relasi_ka"
+                                    value="{{ $data->relasi_ka }}"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Nama CSOT</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder=""
+                                    name="nama_csot"
+                                    value="{{ $data->nama_csot }}"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>NIPP CSOT</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder=""
+                                    name="nipp"
+                                    value="{{ $data->nipp }}"
+                                    autocomplete="off"
+                                />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>No HP</label>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    placeholder=""
+                                    name="no_hp"
+                                    value="{{ $data->no_hp }}"
                                     autocomplete="off"
                                 />
                             </div>
@@ -124,7 +320,7 @@
                                     class="form-control select2"
                                     name="route_id"
                                 >
-                                                                        <option value="{{$data->route_id}}">
+                                    <option value="{{$data->route_id}}">
                                         {{ $route_name }}
                                     </option>
                                     @foreach( $routes as $route)

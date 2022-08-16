@@ -18,7 +18,7 @@ class AppControllers extends Controller
 {
     public function index()
     {
-        return view('app.index.index', ['data_news' => News::all(), 'data_company' => Company::all(), 'sliders' => Slider::all()]);
+        return view('app.index.index', ['data_news' => News::all(), 'data_company' => Company::all(), 'sliders' => Slider::all(), 'setting' => Setting::first()]);
     }
     public function infoLoading()
     {
@@ -55,8 +55,8 @@ class AppControllers extends Controller
 
     public function music()
     {
-      
-        return view('app.music.index', ['data' => Music::all(),'tag'=>Music::all()->pluck('music_tag')->unique()]);
+
+        return view('app.music.index', ['data' => Music::all(), 'tag' => Music::all()->pluck('music_tag')->unique()]);
     }
     public function company($id)
     {
@@ -64,10 +64,7 @@ class AppControllers extends Controller
     }
     public function cctv()
     {
-        $setting = Setting::first();
-
-
-        return view('app.cctv.index', ['cctv_url' => ($setting->cctv) ? $setting->cctv : null]);
+        return view('app.cctv.index', ['setting' => Setting::first()]);
     }
     public function game()
     {

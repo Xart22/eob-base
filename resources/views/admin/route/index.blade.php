@@ -120,24 +120,18 @@
             <div class="card-body">
                 @foreach ($data_route as $route)
                 <div class="row">
-                    <div class="p-2 border w-100">
+                    <div class="p-2 w-100 mt-3">
                         {{$route->route_name}}
-                        <div class="flex-parent p-5">
+                        <div class="flex-parent p-5 overflow-auto border">
                             <div class="input-flex-container">
                                 @foreach($route->routeList as $location)
-                                @if($loop->index)
-                                <div class="input active">
-                                    <span
-                                        data-info="{{$location->getLocation->location_name}}"
-                                    ></span>
-                                </div>
-                                @else
                                 <div class="input">
                                     <span
+                                        class="text-center"
                                         data-info="{{$location->getLocation->location_name}}"
                                     ></span>
                                 </div>
-                                @endif @endforeach
+                                @endforeach
                             </div>
                             <div class="container">
                                 <div

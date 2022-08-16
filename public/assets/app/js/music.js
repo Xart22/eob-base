@@ -26,8 +26,6 @@ function loadSong(song) {
     audio.src = location.origin + `/file/music/${song.path_file}`;
     if (song.path_banner) {
         cover.src = location.origin + `/file/music/${song.path_banner}`;
-    } else {
-        cover.src = location.origin + "/file/music/dummy.png";
     }
 }
 

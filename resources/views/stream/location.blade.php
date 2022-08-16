@@ -30,10 +30,20 @@
                 asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')
             }}"></script>
         <script>
-            $.get("/public/app/nvr/location", (res) => {
-                $("#speed").text("Speed : " + res.speed + " Km/j");
-                $("#location").text("Lokasi : " + res.positon);
+            const url = "{{route('getlocation')}}";
+            $(document).ready(function () {
+                getLocation();
             });
+            function getLocation() {
+                $.get(url, (res) => {
+                    console.log(res);
+                    $("#location").text("Lokasi : " + res.position);
+                    $("#speed").text("Kecepatan : " + res.speed + " Km/j");
+                });
+            }
+            setInterval(() => {
+                getLocation();
+            }, 5000);
         </script>
     </body>
 </html>

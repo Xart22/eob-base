@@ -1,35 +1,14 @@
-import { io } from "socket.io-client";
-const socket = io("https://kai-socket.sonajaya.com/");
 const url = $("#locationUrl").val();
-socket.on("connect", () => {
-    console.log(socket.connected); // true
-});
-var lat = 0;
-var lng = 0;
-var speed = 0;
-
-socket.on("data", (msg) => {
-    console.log(msg);
-    lat = msg.lat;
-    lng = msg.lon;
-    speed = msg.speed;
-    updateLocation();
-});
+const interval = $("#interval").val() * 1000;
 
 $(document).ready(function () {
     updateLocation();
-    //socket.emit("message", "gps");
 });
-// const player = new JSMpeg.Player("ws://localhost:9090", {
-//     autoplay: true,
-// });
 setInterval(() => {
     updateLocation();
-    //socket.emit("message", "gps");
-}, 20000);
+}, interval);
 
 function updateLocation() {
-    console.log(lat, lng, speed);
     $.get(url)
         .done((res) => {
             console.log(res);
@@ -53,7 +32,6 @@ function updateLocation() {
             console.log(err);
         });
 }
-
 $("#delete").click(function (e) {
     e.preventDefault();
     $.get("public/api/stream/info-delete")

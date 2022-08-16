@@ -96,17 +96,18 @@ class SettingControllers extends Controller
             $validator = Validator::make($req->all(), [
                 'ip_nvr' => 'required',
                 'route_id' => 'required',
-                'cctv' => 'required',
+                'interval_update_location' => 'required',
+                'radius_location' => 'required',
 
             ]);
             if ($validator->fails()) {
                 return back()->withErrors($validator)->withInput();
             }
-            Setting::find($id)->update([
-                'ip_nvr' => $req->ip_nvr,
-                'route_id' => $req->route_id,
-                'cctv' => $req->cctv
-            ]);
+            $data = $req->except(['_method', '_token']);
+            $data['id'] = $id;
+            Setting::where('id', $id)->update($data);
+
+
             return redirect()->route('setting.index')->with('succes', 'Setting Applied');;
         } catch (\Throwable $err) {
             return back()->withErrors($err->getMessage())->withInput();

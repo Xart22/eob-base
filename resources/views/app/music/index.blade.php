@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"
+            href="{{ asset('assets/app/fontawesome/css/all.min.css') }}"
         />
         <link rel="stylesheet" href="{{ asset('assets/app/css/music.css') }}" />
         <link

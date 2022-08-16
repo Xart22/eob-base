@@ -1,19 +1,5 @@
-import { io } from "socket.io-client";
-const socket = io("https://kai-socket.sonajaya.com/");
 const url = $("#locationUrl").val();
-socket.on("connect", () => {
-    console.log(socket.connected); // true
-});
-var lat = 0;
-var lng = 0;
-var speed = 0;
-
-socket.on("data", (msg) => {
-    lat = msg.lat;
-    lng = msg.lon;
-    speed = msg.speed;
-    updateLocation();
-});
+const interval = $("#interval").val() * 1000;
 
 $(document).ready(function () {
     //socket.emit("message", "gps");
@@ -24,17 +10,12 @@ $(document).ready(function () {
     });
 });
 
-// const player = new JSMpeg.Player("ws://localhost:9090", {
-//     autoplay: true,
-// });
 setInterval(() => {
-    //socket.emit("message", "gps");
     updateLocation();
-}, 20000);
+}, interval);
 function updateLocation() {
     $.get(url)
         .done((res) => {
-            console.log(res);
             const destionation =
                 res.location_name[res.location_name.length - 1];
             const locationName = res.location_name;

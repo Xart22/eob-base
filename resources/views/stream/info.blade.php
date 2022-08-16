@@ -6,28 +6,50 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="Cache-control" content="no-cache" />
         <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}"
+        />
     </head>
-    <body style="width: 100%; height: fit-content">
-        <marquee
+    <body>
+        <!-- <marquee
             direction="left"
             width="100%"
             id="info"
             bgcolor="#000000"
-            style="color: white; font-size: 50px; font-family: Impact"
-        ></marquee>
+            style="color: red; font-size: 50px; font-family: Impact"
+        ></marquee> -->
+        <div class="row">
+            <div class="col">
+                <h2 style="color: white" id="lokasi"></h2>
+            </div>
+            <div class="col">
+                <h2 style="color: white" id="speed"></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2 style="color: white" id="next"></h2>
+            </div>
+            <div class="col">
+                <h2 style="color: white" id="destination"></h2>
+            </div>
+        </div>
     </body>
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
     <script>
+        const url = "{{route('getlocation')}}";
         $(document).ready(function () {
             console.log($("#info").text());
             updateLocation();
         });
         setInterval(() => {
             updateLocation();
-        }, 60000);
+        }, 20000);
         function updateLocation() {
-            $.get("/public/app/nvr/location", (res) => {
+            $.get(url, (res) => {
                 const destionation =
                     res.location_name[res.location_name.length - 1];
                 const locationName = res.location_name;
@@ -37,7 +59,7 @@
                 const nextStation = getNextStation(distance, locationName, eta);
                 const destionationETA = moment()
                     .add(eta[distance.length - 1], "minutes")
-                    .format("hh:mm");
+                    .format("HH:mm");
                 const destionationDistance = `<br /><span
             class="text-muted eta"
             >${distance[distance.length - 1]} KM<br />
@@ -51,7 +73,7 @@
                 $.map($(".input span"), function (v, i) {
                     const travelTime = moment()
                         .add(eta[i], "minutes")
-                        .format("hh:mm");
+                        .format("HH:mm");
                     $(v).attr("data-year", travelTime);
                 });
 
@@ -74,13 +96,21 @@
                         );
                     }
                 });
+                $("#lokasi").text(res.position);
+                $("#speed").text(res.speed + " KM/H");
+                $("#destination").text(
+                    `ETA Stasiun Akhir : ${destionationETA} ${destionation}`
+                );
+                $("#next").text(
+                    `Stasiun Selanjutnya : ${nextStation.name}`
+                );
                 const textInfo = `| Kecepatan : ${
                     res.speed
-                } Lokasi Saat ini : ${res.position} Statiun Selanjutnya : ${
+                } Lokasi Saat ini : ${res.position} Station Selanjutnya : ${
                     nextStation.name
                 } ETA : ${
                     nextStation.eta
-                } Statiun Terakhir : ${destionation} ETA : ${destionationETA} | ${
+                } Station Terakhir : ${destionation} ETA : ${destionationETA} | ${
                     res.text_info ? res.text_info : ""
                 } `;
                 $("#info").text(textInfo);

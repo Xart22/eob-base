@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use stdClass;
-
 use function convertDMSToDecimal;
 
 class NvrGPSControllers extends Controller
@@ -19,7 +18,7 @@ class NvrGPSControllers extends Controller
     {
         try {
             $setting = DB::table('setting')->first();
-            $route = Route::with('routeList', 'routeList.getLocation')->first();
+            $route = Route::where('id', $setting->route_id)->with('routeList', 'routeList.getLocation')->first();
             $textinfo = Info::find(1);
             $locations = Location::all();
             $response = Http::withDigestAuth('admin', 'Adm12345!')->get('http://' . $setting->ip_nvr . '/ISAPI/Mobile/location/status?format=json');
@@ -37,7 +36,7 @@ class NvrGPSControllers extends Controller
             //GET POSITON
             foreach ($locations as $location) {
                 $position = $this->haversineGreatCircleDistance($position_lat, $position_long, $location->lat, $location->long);
-                if ($position <= 0.5) {
+                if ($position <= 20) {
                     $position_name = $location->location_name;
                     break;
                 } else {
@@ -51,10 +50,11 @@ class NvrGPSControllers extends Controller
             }
 
             // GET DISTANCE
+            $radius = $setting->radius_location / 1000;
             foreach ($route->routeList as $key => $location) {
                 if ($location->pass == null) {
                     $distance = $this->haversineGreatCircleDistance($position_lat, $position_long, $location->getLocation->lat, $location->getLocation->long);
-                    if ($distance <= 0.020) {
+                    if ($distance <= $radius) {
                         RouteLocation::where('location_id', $location->location_id)->update([
                             'pass' => 1
                         ]);

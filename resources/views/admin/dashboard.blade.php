@@ -135,17 +135,18 @@
                 </div>
             </div>
         </div>
-        @if($data != null)
+        @if($data != null || $data='off')
         <div class="row">
             <div class="col">
-                <div class="border p-3 w-100">
+                <div class="border w-100">
                     <h4>CCTV</h4>
-
                     <iframe
-                        src="{{ route('stream-cctv') }}"
+                        src="http://eob-sonasoft.ddns.net:8083/stream/player/EoB_ch1"
                         frameborder="0"
+                        scrolling="no"
+                        allowfullscreen
                         width="100%"
-                        height="750px"
+                        height="900"
                     ></iframe>
                 </div>
             </div>
@@ -155,7 +156,7 @@
             <div class="col">
                 <div class="w-100 p-3 border">
                     Destination : {{ $route_name }}
-                    <div class="flex-parent p-2">
+                    <div class="flex-parent overflow-auto">
                         <div class="input-flex-container">
                             @foreach($route as $location)
                             <div class="input">
@@ -176,15 +177,20 @@
     <!--/. container-fluid -->
 </section>
 <input type="hidden" id="locationUrl" value="{{ route('getlocation') }}" />
+<input
+    type="hidden"
+    id="interval"
+    value="{{ $data->interval_update_location }}"
+/>
+<input type="hidden" id="radius" value="{{ $data->radius_location }}" />
 <!-- /.content -->
 @endsection @section('script')
-<script type="importmap">
-    {
-        "imports": {
-            "socket.io-client": "https://cdn.socket.io/4.4.1/socket.io.esm.min.js"
-        }
-    }
-</script>
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
 <script type="module" src="{{ asset('assets/js/dashboard.js') }}"></script>
+<script>
+    function resizeIframe(obj) {
+        obj.style.height =
+            obj.contentWindow.document.documentElement.scrollHeight + "px";
+    }
+</script>
 @endsection

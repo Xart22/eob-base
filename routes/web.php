@@ -73,6 +73,8 @@ Route::prefix('/stream')->group(function () {
     Route::get('/cctv', [StreamScreenControllers::class, 'cctv'])->name('stream-cctv');
     Route::get('/location', [StreamScreenControllers::class, 'location'])->name('stream-location');
     Route::get('/info', [StreamScreenControllers::class, 'info'])->name('stream-info');
+    Route::get('/running-text', [StreamScreenControllers::class, 'runningText']);
+    Route::get('/template-2', [StreamScreenControllers::class, 'template2']);
     Route::post('/info/create', [InfoControllers::class, 'createInfo'])->name('create-info');
     Route::get('/info/get-info', [InfoControllers::class, 'getInfo'])->name('get-info');
 });

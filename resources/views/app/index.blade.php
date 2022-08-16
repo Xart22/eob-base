@@ -283,7 +283,11 @@
     </div>
 </div>
 <!-- End Modal Detail -->
-
+<input
+    type="hidden"
+    id="interval"
+    value="{{ $setting->interval_update_location }}"
+/>
 @endsection @section('script')
 <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/flickity/flickity.min.js') }}"></script>
